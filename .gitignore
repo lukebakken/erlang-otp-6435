@@ -5,6 +5,7 @@
 *.config
 *.xz
 *.zip
+.tool-versions
 
 rabbitmq_server*/
 rmq/
