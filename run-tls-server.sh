@@ -3,6 +3,5 @@
 set -eu
 readonly curdir="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)"
 readonly logger_level="${1:-error}"
-readonly tls_module="${2:-tls_server}"
-erlc +debug "$curdir/src/$tls_module.erl"
-erl -noinput -kernel logger_level "$logger_level" -s "$tls_module" start
+erlc +debug "$curdir/src/tls_handshake.erl"
+erl -noinput -kernel logger_level "$logger_level" -s tls_handshake start
