@@ -10,6 +10,7 @@ start() ->
             {keyfile,    "./certs/key.pem"},
             {verify, verify_peer},
             {fail_if_no_peer_cert, true},
+            {certificate_authorities, false},
             {log_level, debug}
            ],
     {ok, ListenSocket} = ssl:listen(9999, Opts),

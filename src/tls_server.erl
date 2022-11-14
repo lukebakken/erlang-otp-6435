@@ -8,13 +8,16 @@ start() ->
     inets:start(),
     ssl:start(),
     SslOpts = [
+        {versions, ['tlsv1.3']},
         {cacertfile, "./certs/rootCA.pem"},
         {certfile, "./certs/cert.pem"},
         {keyfile, "./certs/key.pem"},
         {reuseaddr, true},
         {sni_fun, fun tls_server:sni_fun/1},
         {verify, verify_peer},
-        {fail_if_no_peer_cert, true}
+        {fail_if_no_peer_cert, true},
+        {certificate_authorities, false},
+        {log_level, debug}
     ],
     ListenSocket = listen(SslOpts),
     accept_and_handshake(SslOpts, ListenSocket).
