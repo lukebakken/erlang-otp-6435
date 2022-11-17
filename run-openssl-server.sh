@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck disable=SC2155
 
 set -eu
 
@@ -12,8 +13,7 @@ readonly key_file="$certs_dir/key.pem"
 
 # -tls1_3
 # -no_ssl3 -no_tls1 -no_tls1_1
-echo "[INFO] running 'openssl s_server -accept \"$tlshost:$tlsport\" -Verify 8 -verify_return_error\n\t-CAfile \"$ca_file\"\n\t-cert \"$cert_file\"\n\t-key \"$key_file\" \"$@\""
-
+set -x
 openssl s_server -accept "$tlshost:$tlsport" \
     -Verify 8 -verify_return_error \
     -CAfile "$ca_file" -cert "$cert_file" -key "$key_file" "$@"
