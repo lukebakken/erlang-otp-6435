@@ -10,5 +10,6 @@ public class TlsClient {
         SSLSocketFactory ssf = sslContext.getSocketFactory();
         Socket s = ssf.createSocket("127.0.0.1", 9999);
         ((SSLSocket)s).getSession();
+        s.close();
     }
 }
