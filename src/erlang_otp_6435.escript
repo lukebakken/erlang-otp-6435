@@ -27,13 +27,18 @@ main(Args) when is_list(Args) andalso length(Args) > 0 ->
             {ok, TLSTransportSocket} ->
                 case ssl:handshake(TLSTransportSocket) of
                     {ok, _}=R ->
-                        ?LOG_INFO("~p", [R]);
+                        ?LOG_INFO("~p", [R]),
+                        timer:sleep(500);
                     E0 ->
-                        ?LOG_ERROR("~p", [E0])
+                        ?LOG_ERROR("~p", [E0]),
+                        timer:sleep(500)
                 end;
             E1 ->
-                ?LOG_ERROR("~p", [E1])
-        end
+                ?LOG_ERROR("~p", [E1]),
+                timer:sleep(500)
+        end,
+        timer:sleep(1000),
+        ?LOG_INFO("EXITING")
     catch
         Class:Error:Stack ->
             io:format(standard_error, "~p:~p~n~p~n", [Class, Error, Stack]),
